@@ -1,0 +1,43 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+    maven {
+      url "https://plugins.gradle.org/m2"
+    }
+  }
+}
+
+apply plugin: 'java'
+apply plugin: "idea"
+
+repositories {
+  mavenLocal()
+  maven {
+    url "https://packages.confluent.io/maven/"
+  }
+  jcenter()
+  mavenCentral()
+}
+
+ext {
+  jacksonVersion = "2.8.8"
+}
+
+dependencies {
+  compile "com.google.guava:guava:22.0"
+
+  compile "org.apache.logging.log4j:log4j-core:2.11.1"
+  compile "org.apache.logging.log4j:log4j-api:2.11.1"
+
+  testCompile "org.junit.jupiter:junit-jupiter-api:5.2.0"
+  testCompile "org.junit.jupiter:junit-jupiter-engine:5.2.0"
+  testCompile "com.google.truth:truth:0.41"
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
